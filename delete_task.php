@@ -1,16 +1,14 @@
-// delete_task.php
-
 <?php
 require_once 'config.php';
 
-if ($_GET['task_id']) {
-    $task_id = $_GET['task_id'];
+if (isset($_GET['task_id'])) {
+    $task_id = intval($_GET['task_id']); // Convert to integer to prevent SQL injection
 
     $deletingtasks = mysqli_query($db, 
         "DELETE FROM `task` WHERE `task_id` = $task_id")
-        or
-        die(mysqli_error($db));
+        or die(mysqli_error($db));
 
-    header("location: index.php");
+    header("Location: index.php");
 }
 ?>
+
